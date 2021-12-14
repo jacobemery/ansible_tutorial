@@ -1,0 +1,29 @@
+---
+
+- hosts: kvm_host
+  tags: kvm_host
+  become: true
+  gather_facts: no
+  roles:
+    - create_rhel_vm
+
+- hosts: web_servers
+  tags: web_servers
+  become: true
+  gather_facts: no
+  vars: 
+    - packages: ['httpd','nano']
+  roles:
+    - attach_subscription
+    - install_packages
+    - httpd
+  post_tasks:
+    - name: Copy html to web server
+      tags: update_website
+      copy:
+        dest: /var/www/html/index.html
+        src: website/web1/index.html
+    - name: Print URL
+      tags: print_url
+      debug:
+        msg: "Click on or copy this this URL: http://{{ web1_ip }} to see the results"

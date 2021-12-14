@@ -1,0 +1,10 @@
+version: 2
+ethernets:
+  eth0:
+    dhcp4: false
+    # default libvirt network
+    addresses: [ {{ web1_ip }} ]
+    gateway4: 129.40.156.254
+    nameservers:
+      search: [ sanfran.pbm.ihost.com ]
+      addresses: [ 129.40.156.222,8.8.8.8 ]
