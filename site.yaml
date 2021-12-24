@@ -1,0 +1,21 @@
+---
+
+- hosts: web_server
+  tags: web_server
+  become: true
+  gather_facts: no
+  vars: 
+    - packages: ['apache2']
+  roles:
+    - install_packages
+    - apache2
+  post_tasks:
+    - name: Copy html to web server
+      tags: update_website
+      copy:
+        dest: /var/www/html/index.html
+        src: website/index.html
+    - name: Print URL
+      tags: print_url
+      debug:
+        msg: "Click on or copy this URL: http://localhost:80 to see the results"

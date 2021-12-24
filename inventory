@@ -1,25 +1,9 @@
-[localhost]
-127.0.0.1 ansible_connection=local
+[web_server]
+127.0.0.1
 
-[localhost:vars]
-ansible_python_interpreter=/usr/bin/python3
-
-[kvm_host]
-129.40.156.201 ansible_connection=ssh ansible_user= ansible_ssh_pass= ansible_become_password=
-
-[web_servers]
-129.40.156.229 ansible_connection=ssh ansible_ssh_user= ansible_ssh_pass= ansible_become_password=
-
-[all:vars]
-rh_uid=
-rh_pass=
-web1_uid=
-web1_pass=
-web1_sudo=
-web1_ip=
-web1_hostname=web1
-web1_disk=20
-web1_vcpu=2
-web1_ram=4000
-web1_os_version=8.4
-
+[web_server:vars]
+ansible_connection=ssh 
+ansible_ssh_user=root
+ansible_ssh_pass=root
+ansible_become_password=root
+ansible_port=8080
