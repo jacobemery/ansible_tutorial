@@ -75,7 +75,7 @@ Note for advanced users:
 
 ### 6) Ansible 101
 * Click the links / go to the files referenced here and take a look. Just get a basic sense of these concepts, it will make more sense as you use it.
-* [Ansible](https://www.ansible.com) (["What is Ansible?"](https://www.youtube.com/watch?v=fHO1X93e4WA)) automates tasks on servers. For example, it can configure servers after they are provisioned (although it can do that indirectly too).
+* [Ansible](https://www.ansible.com) (["What is Ansible?"](https://www.youtube.com/watch?v=fHO1X93e4WA)) is free and open-source software that automates tasks on servers. For example, it can configure servers after they are provisioned (although it can do that indirectly too).
 * It uses Secure Shell (SSH) to connect to these servers (only the local workstation/controller need to have Ansible installed, something that differentiates it from other DevOps tools like Chef). 
 * All Ansible content must have a few essential components to do this work: playbooks, an inventory, and a configuration file.
 * [Playbooks](site.yaml) tells Ansible what to do.
