@@ -73,18 +73,19 @@ Note for advanced users:
 
 ## Creating Ansible Content
 
-### 6) Understanding ansible components
-* Ansible uses Secure Shell (SSH) to connect to servers in order to configure them. 
-* All Ansible content must have a few essential components: playbooks, an inventory, and a configuration file.
+### 6) Ansible 101
+* Click the links / go to the files referenced here and take a look. Just get a basic sense of these concepts, it will make more sense as you use it.
+* [Ansible](www.ansible.com) (["What is Ansible?"](https://www.youtube.com/watch?v=fHO1X93e4WA)) automates tasks on servers. For example, it can configure servers after they are provisioned (although it can do that indirectly too).
+* It uses Secure Shell (SSH) to connect to these servers (only the local workstation/controller need to have Ansible installed, something that differentiates it from other DevOps tools like Chef). 
+* All Ansible content must have a few essential components to do this work: playbooks, an inventory, and a configuration file.
 * [Playbooks](site.yaml) tells Ansible what to do.
 * The [inventory file](inventory) tells Ansible where to run.
 * The [configuration file](ansible.cfg) file configures Ansible.
 * Other basic Ansible terms to know are:
   * 'Tasks' are the basic units of Ansible work. 
-  * 'Roles' are sequences of tasks which fulfill a specifc function (like configuring the firewall). See the [roles](roles) folder with [install_packages](roles/install_packages) and the reference to it in the [playbook](site.yaml)?
-  * Playbooks are sequences of roles and individual tasks which are run to complete a broader goal (like configuring and deploying a web server)
+  * 'Roles' are sequences of tasks which fulfill a specifc function (like configuring the firewall). Check out the [roles](roles) folder with [install_packages](roles/install_packages). Do you see the reference to it in the main [playbook](site.yaml)?
+  * 'Playbooks' are sequences of roles and individual tasks which are run to complete a broader goal (like configuring and deploying a web server)
   * Playbooks are written in Yet Another Markup Language (YAML), which tells Ansible what to run with Python in the background.
-* Click the links / go to the files referenced here and take a look. Just get a basic sense of these concepts, it will make more sense as you use it.
 
 ### 6) Creating a role
 * In order to view content in a web browser, you need to use Hyper-Text Transfer Protocol (http)
@@ -109,7 +110,7 @@ Note for advanced users:
 * Now that you've created a role and the tasks within it, you need to tell Ansible to call that role in a playbook.
 * The goal is for well-written roles to be usable over and over again (idempotent), and in any playbook, without causing any problems.
 * Open the [main playbook](site.yaml) and add another line below '- install_packages' which matches the name of your new role folder that you just created in step 6. Match the format of "- install_packages" above it.
-* Great! Now Ansible will call the role you created, which runs a task that starts Apache. (We'll double check ypur work at the end of this step).
+* Great! Now Ansible will call the role you created, which runs a task that starts Apache. (We'll double check your work at the end of this step).
 * One more thing needs to be done in this playbook here before we move on. And that is that you need to copy your Hyper-Text Markup Language (html) file to the web server. This is the file whose contents will show up in the web-browser when you type in the URL.
 * As was mentioned earlier, playbooks run a combination of roles and tasks. We've run some roles, now we want the playbook to run a task afterwards.
 * First, at the same indentation as the 'roles:' line, add a new line 'post_tasks:' after your new role call's line.
