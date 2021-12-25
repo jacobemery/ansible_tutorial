@@ -65,24 +65,25 @@ Note for advanced users:
 * In the terminal, paste, "sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04" and hit Enter key, type in your password, hit Enter
 
 ### 4) Open text editor
-* Either open a text editor ("TextEdit" application in Mac or vim in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). I would recommend using VS Code because the folders, text editor, and terminal are all integrated together in one window. Which are the three things you need to use Ansible. You can also install a very helpful extension called "YAML" from Red Hat which helps you catch syntax errors with YAML files (which Ansible uses for a lot of things).
+* Either open a text editor ("TextEdit" application in Mac or vim in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). I would recommend using VS Code because the folders, text editor, and terminal (the three things you need to use Ansible) are all integrated together in one window. You can also install a very helpful extension called "YAML" from Red Hat which helps you catch syntax errors with YAML files (which Ansible uses for a lot of things).
 
 ### 5) Clone Git repository
-* If you haven't already, get this repository by first navigating to a folder in your terminal that you would like to store this project ("cd folder-name"), then typing in your terminal and then hitting Enter:
+* If you haven't already, get this repository by first navigating to a folder in your terminal that you would like to store this project ("ls", then "cd folder-name"), then copying the line below into your terminal and hitting Enter:
 * "git clone https://github.com/jacobemery/ansible_tutorial"
 
 ## Creating Ansible Content
 
 ### 6) Understanding ansible components
 * Ansible uses Secure Shell (SSH) to connect to servers in order to configure them. 
-* All Ansible content must have a few essential components. Playbooks, an inventory, and a configuration file.
+* All Ansible content must have a few essential components: playbooks, an inventory, and a configuration file.
 * [Playbooks](site.yaml) tells Ansible what to do.
 * The [inventory file](inventory) tells Ansible where to run.
-* The [ansible.cfg](ansible.cfg) file configures Ansible.
+* The [configuration file](ansible.cfg) file configures Ansible.
 * Other basic Ansible terms to know are:
   * 'Tasks' are the basic units of Ansible work. 
-  * 'Roles' are sequences of tasks which fulfill a specifc function (like configuring the firewall). See the 'roles' folder and the reference to them in site.yaml?
+  * 'Roles' are sequences of tasks which fulfill a specifc function (like configuring the firewall). See the [roles](roles) folder with [install_packages](roles/install_packages) and the reference to it in the [playbook](site.yaml)?
   * Playbooks are sequences of roles and individual tasks which are run to complete a broader goal (like configuring and deploying a web server)
+  * Playbooks are written in Yet Another Markup Language (YAML), which tells Ansible what to run with Python in the background.
 * Click the links / go to the files referenced here and take a look. Just get a basic sense of these concepts, it will make more sense as you use it.
 
 ### 6) Creating a role
