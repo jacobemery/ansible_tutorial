@@ -1,0 +1,21 @@
+---
+
+- name: Start Apache.
+  ansible.builtin.service:
+    name: apache2
+    state: started
+
+- name: Enable Apache.
+  ansible.builtin.service:
+    name: apache2
+    enabled: yes
+
+
+#######################################################################################################
+#                                                                                                     #
+# That was tricky, wasn't it! The examples given on the website are 'httpd', which is very close!     #
+# But you have to change it to 'apache2' because that is the name of the package on an Ubuntu server. #
+# This is what you'll be doing often with Ansible: taking what is provided as an example, and         #
+# swapping out the example values for what you need. Good work! Let's keep going...                   #
+#                                                                                                     #
+#######################################################################################################

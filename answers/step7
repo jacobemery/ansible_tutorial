@@ -1,0 +1,13 @@
+---
+
+- hosts: web_server
+  become: true
+  gather_facts: no
+  roles:
+    - install_packages
+    - apache2
+  post_tasks:
+    - name: Copy html to web server.
+      copy:
+        src: website/index.html
+        dest: /var/www/html/index.html

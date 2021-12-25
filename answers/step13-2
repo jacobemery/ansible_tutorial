@@ -1,0 +1,16 @@
+---
+
+- hosts: web_server
+  become: true
+  gather_facts: no
+  vars: 
+    - packages: ['apache2', 'nano']
+  roles:
+    - install_packages
+    - apache2
+  post_tasks:
+    - name: Copy html to web server.
+      tags: update_website
+      copy:
+        src: website/index.html
+        dest: /var/www/html/index.html
