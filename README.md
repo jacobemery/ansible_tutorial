@@ -67,13 +67,13 @@ Note for advanced users:
 ### 4) Open text editor
 * Either open a text editor ("TextEdit" application in Mac or vim in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). I would recommend using VS Code because the folders, text editor, and terminal are all integrated together in one window. Which are the three things you need to use Ansible. You can also install a very helpful extension called "YAML" from Red Hat which helps you catch syntax errors with YAML files (which Ansible uses for a lot of things).
 
-### 5) Get this Git repository
+### 5) Clone Git repository
 * If you haven't already, get this repository by first navigating to a folder in your terminal that you would like to store this project ("cd folder-name"), then typing in your terminal and then hitting Enter:
 * "git clone https://github.com/jacobemery/ansible_tutorial"
 
 ## Creating Ansible Content
 
-### 6) Understanding Ansible Components
+### 6) Understanding ansible components
 * Ansible uses Secure Shell (SSH) to connect to servers in order to configure them. 
 * All Ansible content must have a few essential components. Playbooks, an inventory, and a configuration file.
 * [Playbooks](site.yaml) tells Ansible what to do.
@@ -172,14 +172,14 @@ Note for advanced users:
 * Open [site.yaml](site.yaml), below "gather_facts: no" at the same indentation level, add the line "vars:". Hit Enter and then hit the spacebar twice and add the line "packages: ['apache2', 'nano']" (without the double quotes).
 * See the [answers file](answers/step13-2) to check your work.
 * Try it out by running the main playbook with tags. (Find the correct tag by opening install_packages' [main.yaml](roles/install_packages/tasks/main.yaml) file).
-### 14) Debug Messages
+### 14) Debug messages
 * Let's say that at the end of the playbook, you'd like Ansible to print out a URL for the user to easily click on to bring them to their new website.
 * To print information to the terminal, Ansible uses the debug module.
 * Google search the debug module.
 * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes "localhost:80".
 * You could include a tag or two to selectively run that task too.
 * See the [answers file](answers/step14) to check your work.
-### 15) Ad-Hoc Commands
+### 15) Ad-hoc commands
 * There are some things that Ansible modules have not yet been created to do, or that the existing Ansible modules are not flexible enough to accomodate.
 * For these tasks, use the Ansible module "command" to run any shell command.
 * Return to step 11 to clean up.
