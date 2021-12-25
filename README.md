@@ -1,6 +1,5 @@
 # Ansible Tutorial
-Jacob Emery, IBM 2021 
-Feel free to reach out, always happy to help: jacob.emery@ibm.com
+Jacob Emery, IBM 2021 (Feel free to reach out! Always happy to help: jacob.emery@ibm.com)
 
 ## Table of Contents
 * [Goal](#Goal)
