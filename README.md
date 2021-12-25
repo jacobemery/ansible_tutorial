@@ -1,5 +1,6 @@
 # Ansible Tutorial
-By Jacob Emery 2021
+Jacob Emery, IBM 2021 
+Feel free to reach out, always happy to help: jacob.emery@ibm.com
 
 ## Table of Contents
 * [Goal](#Goal)
@@ -14,7 +15,7 @@ By Jacob Emery 2021
 * [Additional Optional Steps](#Additional-Optional-Steps)
 
 ## Goal
-To walk-through creating some basic Ansible content and then using Ansible to deploy a basic simulated website. 
+First-time introduction to Ansible - walk-through creating some basic Ansible content and then using Ansible to deploy a basic simulated website. 
 
 ## Difficulty Level
 Easy/Moderate - This was created to be as simple as possible while still giving you some room to fail and learn from mistakes. A basic understanding of the command line and text editor is necessary to use Ansible.
