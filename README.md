@@ -10,7 +10,6 @@ Feel free to reach out! Always happy to help.
 * [Setup](#Setup)
 * [Creating Ansible Content](#Creating-Ansible-Content)
 * [Running Ansible](#Running-Ansible)
-* [Troubleshooting](#Troubleshooting)
 * [Clean-up](#Clean-up)
 * [Additional Optional Steps](#Additional-Optional-Steps)
 
