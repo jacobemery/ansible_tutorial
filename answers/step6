@@ -1,21 +1,31 @@
 ---
 
-- name: Start Apache.
+- name: Start Apache (http) service.
   ansible.builtin.service:
     name: apache2
     state: started
 
-- name: Enable Apache.
+- name: Enable Apache (http) service.
   ansible.builtin.service:
     name: apache2
     enabled: yes
 
 
-#######################################################################################################
-#                                                                                                     #
-# That was tricky, wasn't it! The examples given on the website are 'httpd', which is very close!     #
-# But you have to change it to 'apache2' because that is the name of the package on an Ubuntu server. #
-# This is what you'll be doing often with Ansible: taking what is provided as an example, and         #
-# swapping out the example values for what you need. Good work! Let's keep going...                   #
-#                                                                                                     #
-#######################################################################################################
+#########################################################################################################
+#                                                                                                       #
+# That was tricky, wasn't it! The examples given on the website are 'httpd', which is very close!       #
+# But you have to change it to 'apache2' because that is the name of the package in Ubuntu land.        #
+#                                                                                                       #
+# Something that can be confusing here is the two "name" parameters in each task. The first one has     #
+# no effect on the outcome of the task. It is simply your description of the task being run. It is,     #
+# however, extremely important in terms of documenting your playbooks. Both you and other users of      #
+# your playbooks in the future will either thank or curse you based on the quality of your descriptions.#
+# I like to use use full sentences to give the user the best possible picture of what the task at hand. #
+# The second "name" parameter in the tasks above is (in this case) the name of the service being        #
+# configured.                                                                                           #
+#                                                                                                       #
+# This is what you'll be doing often with Ansible: taking what is provided as an example, and           #
+# then adapting it for what you need. This can be difficult at first, but much easier than decoding a   #
+# shell script in my opinion. Good work! Let's keep going...                                            #
+#                                                                                                       #
+#########################################################################################################
