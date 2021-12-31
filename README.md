@@ -51,6 +51,11 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop / de
         ~~~
         xcode-select --install
         ~~~
+  * Install Python3 (Ansible needs it)
+      * In the terminal, copy/paste the following and hit Enter:
+        ~~~
+        brew install python3
+        ~~~
   * Install Ansible:
       * In the terminal, copy/paste the following and hit Enter: 
         ~~~
@@ -58,6 +63,14 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop / de
         ~~~
 * <u>For Linux users</u>:
     * Open the terminal (Ctrl+Alt+T).
+    * Install Python3 (Ansible needs it): 
+      * In the terminal, copy/paste one of the following (depending on your distribution) hit Enter, type in your sudo password, hit Enter again:
+        ~~~
+        sudo apt install -y python3
+        ~~~
+        or 
+        ~~~
+        sudo yum install -y python3
     * Install Ansible:
       * In the terminal, copy/paste one of the following (depending on your distribution) hit Enter, type in your sudo password, hit Enter again:
         ~~~
