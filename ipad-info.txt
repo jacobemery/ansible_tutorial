@@ -1,0 +1,15 @@
+<u>For iPad users</u>:
+  * Open App Store:
+    * Search for iSH Shell
+    * Install iSH Shell
+    * Update package manager [apk update apk upgrade]
+    * Add nano editor [apk add nano]
+    * Install Python3 [apk add python3]
+    * Install Python package manager, pip [python3 -m ensurepip --default-pip]
+    * Install Ansible [apk add ansible]
+    * Install openssh-client [apk add openssh-client]
+    * Install git [apk add git]
+    * Identify remote server to use as learning server [ip of the managed system]
+    * Generate a SSH key for the managed node.  It is recommended to use a key that is protected with a password [ssh-keygen -t ed25519]
+    * Transfer the SSH key to managed node [ssh-copy-id -i /root/.ssh/id_ed25519.pub root@"ip of managed system"]
+    
