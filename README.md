@@ -35,7 +35,7 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop / de
 
 ### 1) Install Ansible:
 * <u>For Mac users</u>:
-  * Open the terminal:
+  * Open the terminal of your local workstation:
     * Hit command + spacebar to open Spotlight search, type "terminal" and hit return key.
   * Install homebrew package manager:
     * Copy/paste this into terminal and hit return key: 
@@ -62,7 +62,7 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop / de
         brew install ansible
         ~~~
 * <u>For Linux users</u>:
-    * Open the terminal (Ctrl+Alt+T).
+    * Open the terminal (Ctrl+Alt+T) of your local workstation.
     * Install Python3 (Ansible needs it): 
       * In the terminal, copy/paste one of the following (depending on your distribution) hit Enter, type in your sudo password, hit Enter again:
         ~~~
@@ -82,9 +82,8 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop / de
         ~~~
 
 ### 2) Create a server to configure:
-* <u>Important Note</u>: Usually you would be configuring a remote server for your website (see [Advanced](####<u>Advanced</u> ) below), but assuming you don't have one ready, we'll be setting up a Docker container locally that will act as a "remote server" for us to configure.
-#### <u>Recommended</u>
-Start Docker container:
+* <u>Important Note</u>: Usually you would be configuring a remote server for your website (see [Advanced](#<u>Advanced</u>---provision-a-remote-server:) below), but assuming you don't have one ready, we'll be setting up a Docker container locally that will act as a "remote server" for us to configure ([Recommended](#<u>Recommended</u>---start-Docker-container:)).
+* #### <u>Recommended</u> - start Docker container:
   * For Mac users:
     * In the terminal, copy/paste the following and hit the Enter. Type in your password and hit Enter again:
       ~~~
@@ -115,13 +114,12 @@ Start Docker container:
       ~~~
       sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
       ~~~
-#### <u>Advanced</u> 
-Provision a remote server:
-  * Provision an Ubuntu server with the minimum amount of resources in a public cloud of your choosing.
-  * Change the IP address in the [inventory](inventory) file to the IP address of your remote server.
-  * Delete the line containing "ansible_port" in the [inventory](inventory) file.
-  * Enable port 22 for SSH connection on the remote server.
-  * Change the SSH username, password, and sudo password in the [inventory](inventory) file.
+* #### <u>Advanced</u> - provision a remote server:
+    * Provision an Ubuntu server with the minimum amount of resources in a public cloud of your choosing.
+    * Change the IP address in the [inventory](inventory) file to the IP address of your remote server.
+    * Delete the line containing "ansible_port" in the [inventory](inventory) file.
+    * Enable port 22 for SSH connection on the remote server.
+    * Change the SSH username, password, and sudo password in the [inventory](inventory) file.
 
 ### 3) Open text editor
 * Either open a text editor ("TextEdit" application in Mac or vim/nano in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). I would recommend using VS Code because the folders, text editor, and terminal (the three things you need to use Ansible) are all integrated together in one window. You can also install helpful extensions like "YAML" from Red Hat which helps you catch syntax errors in YAML files (which the majority of Ansible content is written in).
