@@ -6,7 +6,7 @@ Feel free to reach out! Always happy to help.
 First-time introduction to Ansible. A walk-through creating some basic Ansible content and then using Ansible to deploy a basic simulated website. 
 
 ## Difficulty Level
-Easy/Moderate - This was created to be as simple as possible while still giving you some room to fail and learn from mistakes. A basic understanding of the command line is necessary to use Ansible. The instructions are as explicit as possible in what exactly needs to be done, and then gradually becomes more hands-off as it progresses.
+Easy/Moderate - This was created to be as simple as possible while still giving you some room to fail and learn from mistakes. A basic understanding of the command line is necessary to use Ansible. This tutorial provides necessary commands along the way though, so don't worry if you're a newbie. The instructions are as explicit as possible in what exactly needs to be done, and then gradually becomes more hands-off as it progresses.
 
 ## Supported Operating Systems
 Ansible runs in the command line of a Mac or Linux workstation (your laptop/desktop computer or a virtual machine).
@@ -14,8 +14,8 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop/desk
 ## Summary
 * First, we'll install Ansible.
 * Normally, we would then configure a remote server to host your website. This tutorial will use a local Docker container to simulate a remote server.
-* Next, walk through the creation of some very minimal Ansible content.
-* Then, Run Ansible and debug any problems.
+* Next, walk through the creation of some very basic Ansible content.
+* Then, run Ansible and debug any problems.
 * Visit your new website.
 * Optionally, try some more advanced Ansible configurations.
 * Finally, clean-up.

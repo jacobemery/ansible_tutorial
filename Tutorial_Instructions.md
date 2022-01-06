@@ -62,7 +62,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * <u>Important Note</u>: Usually you would be configuring a remote server for your website (see [Advanced](#<u>Advanced</u>---provision-a-remote-server:) below), but assuming you don't have one ready, we'll be setting up a Docker container locally that will act as a "remote server" for us to configure ([Recommended](#<u>Recommended</u>---start-Docker-container:)).
 * #### <u>Recommended</u> - start Docker container:
   * For Mac users:
-    * In the terminal, copy/paste the following and hit the Enter. Type in your password and hit Enter again:
+    * In the terminal, copy/paste the following and hit Enter. If needed, type in your password and hit Enter again:
       ~~~
       brew install docker
       ~~~
@@ -70,7 +70,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
       ~~~
       sudo launchctl start docker
       ~~~
-    * In the terminal, copy/paste:
+    * In the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again::
       ~~~
       sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
       ~~~
@@ -83,7 +83,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
       ~~~ 
       sudo yum install -y docker
       ~~~
-    * Once that installs, in the terminal, copy/paste the following, hit the Enter key, type in your password, and hit Enter again: 
+    * Once that installs, in the terminal, copy/paste the following, hit Enter, type in your password, and hit Enter again: 
       ~~~
       sudo systemctl start docker
       ~~~
@@ -92,6 +92,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
       sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
       ~~~
 * #### <u>Advanced</u> - provision a remote server:
+    * Do this step instead of the above steps if you would like to provision a remote server instead of using a local Docker container.
     * Provision an Ubuntu server with the minimum amount of resources in a public cloud of your choosing.
     * Change the IP address in the [inventory](inventory) file to the IP address of your remote server.
     * Delete the line containing "ansible_port" in the [inventory](inventory) file.
@@ -99,10 +100,13 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
     * Change the SSH username, password, and sudo password in the [inventory](inventory) file.
 
 ### 3) Open text editor
-* Either open a text editor ("TextEdit" application in Mac or vim/nano in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). I would recommend using VS Code because the folders, text editor, and terminal (the three things you need to use Ansible) are all integrated together in one window. You can also install helpful extensions like "YAML" from Red Hat which helps you catch syntax errors in YAML files (which the majority of Ansible content is written in).
+* Either open a text editor ("TextEdit" application in Mac or vim/nano in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). 
+* I would recommend using something like [VS Code](https://code.visualstudio.com/download) because the folders, text editor, and terminal (the three things you need to use Ansible) are all integrated together in one window.
+* With VS Code, you can also install helpful extensions like ["YAML" from Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) which helps you catch syntax errors in YAML files (which the majority of Ansible content is written in).
 
 ### 4) Clone Git repository
-* If you haven't already, get this repository by first navigating to a folder in your terminal that you would like to store this project (`ls`, then `cd folder-name` in the terminal), then copying the line below into your terminal and hitting Enter:
+* If you haven't already, get this repository by first navigating to a folder in your terminal that you would like to store this project (`ls`, then `cd folder-name` in the terminal).
+* Then copy the line below into your terminal and hit Enter:
   ~~~
   git clone https://github.com/jacobemery/ansible_tutorial
   ~~~
@@ -111,7 +115,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 
 ### 5) Ansible 101
 * <u>Note</u>: Click the links below just to get a basic understanding of these concepts, they will make a lot more sense once you start using them.
-* [Ansible](https://www.ansible.com) (["What is Ansible?" video](https://www.youtube.com/watch?v=fHO1X93e4WA)) is free and open-source software from Red Hat that automates computer tasks. It's usually used for the configuration of servers, but it is very flexible and can be adapted to do many things.
+* [Ansible](https://www.ansible.com) (["What is Ansible?" video](https://www.youtube.com/watch?v=fHO1X93e4WA)) is free, open-source software from Red Hat that automates tasks on computers. It's usually used for the configuration of servers, but it is very flexible and can be adapted to do many things.
 * It uses Secure Shell (SSH) to connect to the servers it aims to configure. Only the local workstation needs to have Ansible installed (something that differentiates it from other DevOps tools like Chef). 
 * To work properly, Ansible must have a few essential components: playbook(s), an inventory, and a configuration file.
   * [Playbooks](site.yaml) tell Ansible what to do.
@@ -120,7 +124,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * Other Ansible components to know:
   * 'Tasks' are the basic units of Ansible work, which include a 'module' and some other information like a name, tags, conditionals, and others.
   * 'Modules' are official or community-created actions available in Ansible, e.g. shell commands with separated-out and standardized parameters so they are easier to read, understand, and use.
-  * 'Roles' are sequences of tasks which fulfill a specifc function (like configuring the firewall). Check out the [roles](roles) folder with [install_packages](roles/install_packages/tasks/main.yaml) inside it. Then look for the reference to it in the [main playbook](site.yaml). See it?
+  * 'Roles' are sequences of tasks which fulfill a specifc function (like configuring the firewall). Check out the [roles](roles) folder with [install_packages](roles/install_packages/tasks/main.yaml) inside it. Then look for the reference to it in the [site.yaml playbook](site.yaml). See it?
   * 'Playbooks' are sequences of roles and tasks which accomplish a broader goal (e.g. configuring and deploying a web server).
 
 ### 6) Customize your soon-to-be website
@@ -128,7 +132,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * Open the [index.html](website/index.html) file in the [website](website) foler.
 * Replace "`Website-Title-Here`" with what you want the website to be called. This will show up on the web browser tab.
 * Replace "`Webiste-Content-Here`" with what you want the website's homepage to say.
-* Alternatively, copy/paste or type out any HTML you'd like to show up on the website here. 
+* Alternatively, copy/paste or type out any HyperText Markup Language (HTML) content you'd like to show up on the website here. 
 * Go wild! Be creative!
 
 ### 7) Create a task
