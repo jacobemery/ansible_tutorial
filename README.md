@@ -3,17 +3,16 @@ Created by Jacob Emery (jacob.emery@ibm.com), IBM 2021 \
 Feel free to reach out! Always happy to help.
 
 ## Get Started
-* When you are ready to begin the tutorial, open the [tutorial instructions file](Tutorial_Instructions.md) and follow the step-by-step instructions there.
-* Good luck!
+When you are ready to begin the tutorial, open the [tutorial instructions file](Tutorial_Instructions.md) and follow the step-by-step instructions there. Good luck!
 
 ## Goal
 First-time introduction to Ansible. A walk-through creating some basic Ansible content and then using Ansible to deploy a basic simulated website. 
 
 ## Difficulty Level
-Easy/Moderate - This was created to be as simple as possible while still giving you some room to fail and learn from mistakes. A basic understanding of the command line is necessary to use Ansible. This tutorial provides necessary commands along the way though, so don't worry if you're a newbie. The instructions are as explicit as possible in what exactly needs to be done, and then gradually becomes more hands-off as it progresses.
+Beginner - This was created to be as simple as possible while still giving you some room to fail and learn from mistakes. A basic understanding of the command line is necessary to use Ansible. This tutorial provides necessary commands along the way though, so don't worry if you're a newbie. The instructions are as explicit as possible in what exactly needs to be done, and then gradually becomes more hands-off as it progresses.
 
 ## Supported Operating Systems
-Ansible runs in the command line of a Mac or Linux workstation (your laptop/desktop computer or a virtual machine).
+* Ansible runs in the command line of a Mac or Linux workstation (your laptop/desktop computer or a virtual machine).
 
 ## Summary
 * First, we'll install Ansible.
