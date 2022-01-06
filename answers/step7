@@ -3,24 +3,12 @@
 - hosts: web_server
   become: true
   gather_facts: no
+  vars:
+    packages: ['apache2']
   roles:
     - install_packages
-    - apache2
   post_tasks:
     - name: Copy index.html to web server.
-      copy:
+      ansible.builtin.copy:
         src: website/index.html
-        dest: /var/www/html/index.html
-
-#########################################################################################
-#                                                                                       #
-# You may have noticed that instead of calling the module "ansible.builtin.copy", it's  #
-# just "copy". This is because it is a builtin feature of Ansible. There are official   #
-# modules, like copy, and then there are community-created modules in Ansible Galaxy,   #
-# which extend Ansible's usefulness. Galaxy collections must be installed separately,   #
-# for example "ansible-galaxy collection install community.general". When referencing   #
-# Galaxy modules, the full module name must be used in the task, for example:           #
-# "community.crypto.openssh_keypair". You can create your own modules (written in       #
-# Python) and contribute them too!                                                      #
-#                                                                                       #
-#########################################################################################
+        dest: var/www/html/index.html
