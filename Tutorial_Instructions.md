@@ -15,7 +15,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Open the terminal of your local workstation:
     * Hit command + spacebar to open Spotlight search, type "terminal" and hit return key.
   * Install homebrew package manager:
-    * Copy/paste this into terminal and hit return key: 
+    * Copy/paste this into terminal and hit Enter, type in your password, hit Enter again, may have to hit Enter one more time.
       ~~~
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       ~~~

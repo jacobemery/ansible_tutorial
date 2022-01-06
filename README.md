@@ -2,6 +2,10 @@
 Created by Jacob Emery (jacob.emery@ibm.com), IBM 2021 \
 Feel free to reach out! Always happy to help.
 
+## Get Started
+* When you are ready to begin the tutorial, open the [tutorial instructions file](Tutorial_Instructions.md) and follow the step-by-step instructions there.
+* Good luck!
+
 ## Goal
 First-time introduction to Ansible. A walk-through creating some basic Ansible content and then using Ansible to deploy a basic simulated website. 
 
@@ -19,10 +23,6 @@ Ansible runs in the command line of a Mac or Linux workstation (your laptop/desk
 * Visit your new website.
 * Optionally, try some more advanced Ansible configurations.
 * Finally, clean-up.
-
-## Get Started
-* When you are ready to begin the tutorial, open the [tutorial instructions file](Tutorial_Instructions.md) and follow the step-by-step instructions there.
-* Good luck!
 
 ## Additional Ansible Resources
 * For more information on Ansible, check out the following links:
