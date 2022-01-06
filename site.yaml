@@ -3,5 +3,7 @@
 - hosts: web_server
   become: true
   gather_facts: no
+  vars:
+    packages: ['apache2']
   roles:
     - install_packages

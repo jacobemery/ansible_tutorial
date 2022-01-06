@@ -8,6 +8,7 @@
 - name: Installing required packages. This may take a while, depending on the number of packages to be installed.
   tags: install_packages
   ansible.builtin.package:
-    name: apache2
+    name: "{{ item }}"
     state: latest
     update_cache: yes
+  loop: "{{ packages }}"
