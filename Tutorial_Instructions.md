@@ -156,7 +156,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Replace "Copy file with owner and permissions" in the "`name:`" line from the example with something like: "Copy index.html to web server."
   * <u>Note on task names</u>: The "`name:`" parameter has no effect on the outcome of the task. It is simply your description of the task being run. It is, however extremely important in terms of documenting your playbooks. Both you and other users of your playbooks in the future will either thank or curse you based on the quality of your descriptions. I recommend using full sentences to give the user the best possible picture of the task. This is what shows up on the terminal when you run the playbook (which you will see later).
   * Replace the example file path in the source (`src:`) line with the location of [the HTML file](website/index.html) we want copied over: "`website/index.html`"
-  * Next, replace the destination (`dest:`) parameter with the file path where we need [the HTML file](website/index.html) to be place on the remote server so that it is accessible via the internet: "`var/www/html/index.html`"
+  * Next, replace the destination (`dest:`) parameter with the file path where we need [the HTML file](website/index.html) to be place on the remote server so that it is accessible via the internet: "`/var/www/html/index.html`"
   * Because we do not need to set the permissions/ownership of this file, delete the rest of the lines from the example (`owner`, `group`, and `mode` parameters).
 * Great! You created your first Ansible task. 
 * Check your work [here](answers/step7). Make sure to double-check your indentation.
