@@ -206,7 +206,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * Watch Ansible as it runs. 
 * If all goes smoothly, you should be able to open a web browser and type in the following as the URL to see your new website!
   ~~~
-  http://localhost:8080
+  http://127.0.0.1:80
   ~~~
 * Likely though, you will encounter some errors...
 
