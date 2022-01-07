@@ -256,7 +256,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Watch Ansible as it runs and updates the website automatically.
   * Refresh the web page at:
     ~~~
-    http://localhost:8080
+    http://127.0.0.1:80
     ~~~
 * If you want to use multiple tags, enclose them in single or double quotes, and separate with commas. For example: 
   ~~~
