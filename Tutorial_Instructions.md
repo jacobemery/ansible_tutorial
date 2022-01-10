@@ -48,6 +48,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
         or 
         ~~~
         sudo yum install -y python3
+        ~~~
     * Install Ansible:
       * In the terminal, copy/paste one of the following (depending on your distribution) hit Enter, type in your sudo password, hit Enter again:
         ~~~
@@ -68,7 +69,6 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
       ~~~
     * Open Docker:
       * Hit command + spacebar to open Spotlight search, type "docker" and hit return key.
-      ~~~
     * Once Docker starts up, in the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again:
       ~~~
       sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
