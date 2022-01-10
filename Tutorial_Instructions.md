@@ -66,11 +66,10 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
       ~~~
       brew install docker
       ~~~
-    * Once that installs, in the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again:
+    * Open Docker:
+      * Hit command + spacebar to open Spotlight search, type "docker" and hit return key.
       ~~~
-      sudo launchctl start docker
-      ~~~
-    * In the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again::
+    * Once Docker starts up, in the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again:
       ~~~
       sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
       ~~~
