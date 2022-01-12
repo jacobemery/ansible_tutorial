@@ -16,17 +16,18 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
     * Hit command + spacebar to open Spotlight search, type "terminal" and hit return key.
   * Install homebrew package manager:
     * Copy/paste this into terminal and hit Enter, type in your password, hit Enter again, may have to hit Enter one more time.
+    * Note: In GitHub, the box below can be easily copied by hovering over the far right side of the box and clicking on the copy button.
       ~~~
       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
       ~~~
   * Update command line tools:
-      * In the terminal, copy/paste the following and hit Enter:
-        ~~~
-        softwareupdate --all --install
-        ~~~
       * Then, in the terminal, copy/paste the following and hit Enter:
         ~~~
         xcode-select --install
+        ~~~
+      * If you need to update your software. In the terminal, copy/paste the following and hit Enter:
+        ~~~
+        softwareupdate --all --install
         ~~~
   * Install Python3 (Ansible needs it)
       * In the terminal, copy/paste the following and hit Enter:
@@ -69,7 +70,8 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
       ~~~
     * Open Docker:
       * Hit command + spacebar to open Spotlight search, type "docker" and hit return key.
-    * Once Docker starts up, in the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again:
+    * Start Docker container. ([info](https://hub.docker.com/r/rastasheep/ubuntu-sshd/))
+      * Once Docker starts up, in the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again:
       ~~~
       sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
       ~~~
@@ -128,7 +130,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 
 ### 6) Customize your soon-to-be website
 * The end product of this tutorial is a very basic website. So first, let's customize it!
-* Open the [index.html](website/index.html) file in the [website](website) foler.
+* Open the [index.html](website/index.html) file in the [website](website) folder.
 * Replace "`Website-Title-Here`" with what you want the website to be called. This will show up on the web browser tab.
 * Replace "`Webiste-Content-Here`" with what you want the website's homepage to say.
 * Alternatively, copy/paste or type out any HyperText Markup Language (HTML) content you'd like to show up on the website here. 
@@ -143,6 +145,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Read this page, which describes how to use the module. 
   * The examples near the bottom are very helpful. That first one looks close to what we want to use, select and copy it.
 * Now we need to incorporate it into the playbook.
+  * Give the steps below a try first, but if you get stuck, answers can be found [here](answers).
   * Open up the [site.yaml playbook](site.yaml).
   * Create a new line under "`- install_packages`". Line-up the text cursor with "`roles:`" above and type "`post_tasks:`" and hit Enter. 
     * <u>Remember</u>: 'playbooks' are sequences of roles and tasks which accomplish a broader goal.
@@ -169,14 +172,14 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Apache is HTTP server software that will allow you to connect to your deployed website in a browser by the end of this tutorial. Just what we need!
   * I've already written a role that installs the software for apache2 on the server for you. Check it out [here](roles/install_packages/tasks/main.yaml) as a role example.
 * The next step is create a role which starts and enables the Apache software.
-  * The first step to making a new role, is to create a series folders within each other that follow this required structure: `roles/role_name/tasks/main.yaml`. Replace `role_name` with something related to apache or http.
+  * The first step to making a new role, is to create a series folders within each other that follow this required structure: `roles/role_name/tasks/main.yaml`. Replace `role_name` with `start_apache2`.
     ~~~
     roles
       └─ role_name
           └─ tasks
               └─ main.yaml
     ~~~
-    * <u>In terminal</u>:
+    * <u>To create folders, in terminal</u>:
       * Navigate to the folder you'd like to create a folder in (`ls`, then `cd folder-name`)
       * Create the new folder with `mkdir new-folder-name`, and so on, until you make the last folder: "tasks". 
       * Type `cd tasks` and then `touch main.yaml` and hit Enter to create the file.
@@ -189,8 +192,8 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
     * We want to use this module to start and enable the service named "apache2". Read the parameters and pull from the examples to create two tasks which tell Ansible to do just that. 
     * Use the [install_packages](roles/install_packages/tasks/main.yaml) role as a reference if you need an example.
   * Check your work [here](answers/step8). Give it a good try first though!
-* Ok so we've created the roles tasks, but we're not quite done yet. We also need to tell Ansible that we'd like it to run this role in the playbook.
-  * Open the [site.yaml](site.yaml) playbook and, in the same format and indentation as "`- install_packages`", add a line that calls your new role's custom name that you gave it in the folder structure from above.
+* Ok so we've created the role's tasks, but we're not quite done yet. We also need to tell Ansible that we'd like it to run this role in the playbook.
+  * Open the [site.yaml](site.yaml) playbook and just below the "`- install_packages`" line, in the same format and indentation, add a line that calls `- start_apache2`.
 * Great! Now Ansible will call the role you created that starts and enables Apache.
 
 ## Run Ansible
