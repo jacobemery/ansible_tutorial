@@ -12,7 +12,7 @@
     - name: Copy index.html to web server.
       ansible.builtin.copy:
         src: website/index.html
-        dest: var/www/html/index.html
+        dest: /var/www/html/index.html
     - name: Print website URL.
       tags: print_url, update_website
       debug:
