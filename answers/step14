@@ -16,4 +16,4 @@
     - name: Print website URL.
       tags: print_url, update_website
       debug:
-        msg: "Click on or copy this URL into a web-browser to see your website: http://localhost:80"
+        msg: "Click on or copy this URL into a web-browser to see your website: http://127.0.0.1:80"
