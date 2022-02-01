@@ -288,7 +288,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * To print information to the terminal, Ansible uses the `debug` module.
 * Let's say that at the end of the playbook, you'd like Ansible to print out a URL for the user to easily click on to bring them to their new website.
   * Do a quick Google search to find the debug module.
-  * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes `localhost:80`.
+  * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes `http://127.0.0.1:80`.
   * You could include a tag or two to selectively run just that task too.
 * Check your work [here](answers/step14).
 ### 15) Ad-hoc commands
