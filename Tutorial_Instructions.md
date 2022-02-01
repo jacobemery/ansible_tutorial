@@ -234,14 +234,22 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 
 ## Clean-Up
 
-### 11) Kill container
-* If you would like to do some additional steps to learn more about Ansible, skip this step until after doing the optional steps below.
-* To tear down your web server, in your terminal run the command: 
-  ~~~
-  sudo docker kill rastasheep/ubuntu-sshd:14.04
-  ~~~
-
+### 11) Teardown Web Server
+* <u>Note:</u> If you would like to do some additional steps to learn more about Ansible, skip this step until after doing the [optional steps](##Additional-Optional-Steps) below.
+* [Recommended](#<u>Recommended</u>---start-Docker-container:): 
+  * First get the container ID in your terminal by running this command: 
+    ~~~
+    sudo docker ps
+    ~~~
+    then use that Container ID you just found to kill the Docker container:
+    ~~~
+    sudo docker kill <containerID>
+    ~~~
+* [Advanced](#<u>Advanced</u>---provision-a-remote-server:):
+  * Make sure to teardown the server you provisioned in the cloud in order to avoid ongoing costs.
+  
 ## Additional Optional Steps
+
 ### 12) Tags
 * What if you decide you don't like what you put on your website? Or you spot a typo? What can you do? Do you have to run the playbook from the beginning? Nope! Thankfully, you can use tags.
 * Each task can include one or more 'tags' which help the user selectively run individual tasks or roles within a playbook.
