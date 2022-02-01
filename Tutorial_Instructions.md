@@ -239,7 +239,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * [Recommended](#<u>Recommended</u>---start-Docker-container:): 
   * First get the container ID in your terminal by running this command: 
     ~~~
-    sudo docker ps
+    sudo docker ps | awk '{print $1}'
     ~~~
     then use that Container ID you just found to kill the Docker container:
     ~~~
