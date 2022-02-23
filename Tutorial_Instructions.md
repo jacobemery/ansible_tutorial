@@ -172,22 +172,30 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Apache is HTTP server software that will allow you to connect to your deployed website in a browser by the end of this tutorial. Just what we need!
   * I've already written a role that installs the software for apache2 on the server for you. Check it out [here](roles/install_packages/tasks/main.yaml) as a role example.
 * The next step is create a role which starts and enables the Apache software.
-  * The first step to making a new role, is to create a series folders within each other that follow this required structure: `roles/role_name/tasks/main.yaml`. Replace `role_name` with `start_apache2`.
+  * The first step to making a new role, is to create a series folders within each other that follow this required structure: `ansible_tutorial/roles/start_apache2/tasks/main.yaml`, where `start_apache2` represents the name of the new role.
     ~~~
-    roles
-      └─ role_name
-          └─ tasks
-              └─ main.yaml
+    ansible_tutorial
+      └─roles
+          └─start_apache2
+              └─tasks
+                  └─main.yaml
     ~~~
-    * <u>To create folders, in terminal</u>:
-      * Navigate to the folder you'd like to create a folder in (`ls`, then `cd folder-name`)
-      * Create the new folder with `mkdir new-folder-name`, and so on, until you make the last folder: "tasks". 
-      * Type `cd tasks` and then `touch main.yaml` and hit Enter to create the file.
+    * <u>To create folders in terminal, here are some useful commands</u>:
+     ~~~
+     pwd #to see which folder you're in currently ('print working directory')
+     ls #to see the contents of the folder you're currently in ('list')
+     cd folder-name #to move into one of the sub-folders ('change directories' another name for folders in Linux)
+     cd .. #to go back up a folder (.. represents the parent folder)
+     mkdir new-folder-name #to create a new folder ('make directory')
+     touch file-name.yaml #to create a new file within the current folder
+     ~~~
+    * Use these commands to create a series of subfolders that match `ansible_tutorial/roles/start_apache2/tasks/main.yaml`
+      
     * <u>In VS Code</u>: do this by right clicking on the folder you'd like to make a folder in and click "New Folder". Type in the name, hit Enter, and so on until "tasks", then click "New File" to create "main.yaml".
   * Now we'll start creating the role's tasks.
     * First, open the main.yaml file that you just created and put three dashes at the top of the file, like this: "`---`", which signals the start of Ansible content to be run. Hit Enter twice to move to a new line.
     * Remember how I said that finding the correct Ansible module is a core skill for using Ansible effectively? 
-    * See if you can find an Ansible module on your own that manages software services like http.
+    * See if you can find an Ansible module all on your own that <u>manages software services</u> like http. 
     * Find it?
     * We want to use this module to start and enable the service named "apache2". Read the parameters and pull from the examples to create two tasks which tell Ansible to do just that. 
     * Use the [install_packages](roles/install_packages/tasks/main.yaml) role as a reference if you need an example.
@@ -201,7 +209,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 ### 9) Run Ansible playbook
 * Ok! We're ready to run the Ansible playbook we've been working on.
 * First, make sure to save all the files you've changed if you haven't already.
-* In your terminal, navigate to the [top-level folder](ansible_tutorial) of your cloned repository, and run the following command:
+* In your terminal, navigate to the top-level folder of your cloned repository (if you do `ls` you should see the inventory and site.yaml files), and run the following command:
   ~~~
   ansible-playbook site.yaml
   ~~~
