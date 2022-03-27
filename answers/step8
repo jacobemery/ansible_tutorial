@@ -1,8 +1,21 @@
 ---
-- name: Start Apache (http) service.
+- name: Turn off SELinux temporarily
+  tags: httpd
+  command: setenforce 0
+
+- name: httpd listen on port 8081
+  tags: httpd
+  lineinfile:
+    path: /etc/httpd/conf/httpd.conf
+    regexp: "^Listen 80"
+    line: "Listen 8081"
+    state: present
+
+- name: Restart Apache (httpd) service.
+  tags: restart_apache
   service:
     name: httpd
-    state: started
+    state: restarted
 
 - name: Enable Apache (http) service.
   service:
@@ -21,9 +34,9 @@
 #                                                                                         #
 # You can actually combine these two tasks into one if you want, like this:               #
 #                                                                                         # 
-#  - name: start and enable Apache (http) service.                                        # 
+#  - name: restart and enable Apache (http) service.                                        # 
 #    service:                                                                             #
-#      name: apache2                                                                      #
+#      name: httpd                                                                      #
 #      enabled: yes                                                                       #
 #                                                                                         #
 # Bonus points if you figured that one out on your own! Let's keep going.                 #

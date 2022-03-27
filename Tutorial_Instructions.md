@@ -91,13 +91,13 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
     * <u>Remember</u>: 'Roles' are sequences of tasks which fulfill a specifc function.
   * Apache is HTTP server software that will allow you to connect to your deployed website in a browser by the end of this tutorial. Just what we need!
   * I've already written a role that installs Apache for you. Check it out [here](roles/install_packages/tasks/main.yaml) as a role example.
-* The next step is create a role which starts and enables Apache.
-    * Open the [main.yaml](roles/httpd/tasks/main.yaml) file and put three dashes at the top of the file, like this: `---`, which signals the start of Ansible content to be run. Hit Enter to move to a new line.
+* The next step is create a role which restarts and enables Apache after doing some configuration.
+    * Open the [main.yaml](roles/httpd/tasks/main.yaml) file. A few configuration steps are already there.
     * Remember how I said that you'd have to find the next Ansible module? 
       * Open up a web browser and Google 'ansible module manage services'.
       * You should find a website at https://docs.ansible.com with a page titled "ansible.builtin.service - manage services"
       * Read this page, which describes how to use the module. 
-      * The examples near the bottom are very helpful. That first one looks right! Select and copy it.
+      * The examples near the bottom are very helpful. That first one looks almost right! Select and copy it. At the bottom of the file, paste the example from the website and alter it so that it restarts and enables httpd.
       * Bonus points: we also want to <i>enable</i> httpd so that it starts back up on reboot of the server. See if you can figure out how to do that from the examples on the module's page.
   * Check your work [here](answers/step8). Give it a good try first though!
 * Ok so we've created the role's tasks, but we're done quite yet. We also need to tell Ansible that we'd like it to run this role in the playbook.
@@ -116,7 +116,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * Watch Ansible as it runs. 
 * If all goes smoothly, you should be able to open a web browser and type in the following as the URL to see your new website!
   ~~~
-  http://127.0.0.1
+  http://127.0.0.1:8081
   ~~~
 * Likely though, you will encounter some errors...
 
@@ -141,13 +141,10 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * The more v's you add, the more information Ansible will give you. This can help you get to the root of the problem. This playbook should be idempotent, meaning you can run it as many times as you want and it won't create problems.
 
 ## Clean-Up
-
-### 11) Teardown Web Server
-* <u>Note:</u> If you would like to do some additional steps to learn more about Ansible, skip this step until after doing the [optional steps](##Additional-Optional-Steps) below.
   
 ## Additional Optional Steps
 
-### 12) Tags
+### 11) Tags
 * What if you decide you don't like what you put on your website? Or you spot a typo? What can you do? Do you have to run the playbook from the beginning? Nope! Thankfully, you can use tags.
 * Each task can include one or more 'tags' which help the user selectively run individual tasks or roles within a playbook.
 * Try adding the line below to the 'Copy index.html to web server.' task in [site.yaml](site.yaml) between "`name:`" and "`ansible.builtin.copy:`", at the same indentation:
@@ -163,13 +160,13 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Watch Ansible as it runs and updates the website automatically.
   * Refresh the web page at:
     ~~~
-    http://127.0.0.1
+    http://127.0.0.1:8081
     ~~~
 * If you want to use multiple tags, enclose them in single or double quotes, and separate with commas. For example: 
   ~~~
   ansible-playbook site.yaml --tags 'httpd,update_website'
   ~~~
-### 13) Loops
+### 12) Loops
 * Check out the [install_packages role](roles/install_packages/tasks/main.yaml), see the `"{{ item }}"` and `loop: "{{ packages }}"` lines?
 * This is the syntax for Ansible's simple looping function. Check out this [helpful documentation page](https://docs.ansible.com/ansible/latest/user_guide/playbooks_loops.html) for more information on loops.
 * So, what if you wanted to, for example, install more packages on your web server besides just Apache? Maybe you're new to Linux and don't know how to quit vim yet so you want to use nano instead...
@@ -181,14 +178,14 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
     ~~~
   * Try it out by running the [main playbook](site.yaml) with tags. (Find the correct tag by opening the [install_packages role](roles/install_packages/tasks/main.yaml).
 * What else could benefit from looping? Maybe you want to start and enable more software services? Play around with loops a bit if you'd like.
-### 14) Debug messages
+### 13) Debug messages
 * To print information to the terminal, Ansible uses the `debug` module.
 * Let's say that at the end of the playbook, you'd like Ansible to print out a URL for the user to easily click on to bring them to their new website.
   * Do a quick Google search to find the debug module.
-  * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes `http://127.0.0.1`.
+  * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes `http://127.0.0.1:8081`.
   * You could include a tag or two to selectively run just that task too.
-* Check your work [here](answers/step14).
-### 15) Ad-hoc commands
+* Check your work [here](answers/step13).
+### 14) Ad-hoc commands
 * There are some things that Ansible modules have not yet been created to do, or that the existing Ansible modules are not flexible enough to accomodate.
 * For these tasks, use the Ansible modules `command` or `shell` to run any shell command. 
 * For example:
