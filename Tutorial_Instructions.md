@@ -3,116 +3,36 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 
 ## Table of Contents
 * [Setup](#Setup)
-* [Creating Ansible Content](#Creating-Ansible-Content)
+* [Create Ansible Content](#Create-Ansible-Content)
 * [Run Ansible](#Run-Ansible)
-* [Clean-up](#Clean-up)
 * [Additional Optional Steps](#Additional-Optional-Steps)
 
 ## Setup
 
-### 1) Install Ansible:
-* <u>For Mac users</u>:
-  * Open the terminal of your local workstation:
-    * Hit command + spacebar to open Spotlight search, type "terminal" and hit return key.
-  * Install homebrew package manager:
-    * Copy/paste this into terminal and hit Enter, type in your password, hit Enter again, may have to hit Enter one more time.
-    * Note: In GitHub, the box below can be easily copied by hovering over the far right side of the box and clicking on the copy button.
-      ~~~
-      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      ~~~
-  * Update command line tools:
-      * Then, in the terminal, copy/paste the following and hit Enter:
-        ~~~
-        xcode-select --install
-        ~~~
-      * If you need to update your software. In the terminal, copy/paste the following and hit Enter:
-        ~~~
-        softwareupdate --all --install
-        ~~~
-  * Install Python3 (Ansible needs it)
-      * In the terminal, copy/paste the following and hit Enter:
-        ~~~
-        brew install python3
-        ~~~
-  * Install Ansible:
-      * In the terminal, copy/paste the following and hit Enter: 
-        ~~~
-        brew install ansible
-        ~~~
-* <u>For Linux users</u>:
-    * Open the terminal (Ctrl+Alt+T) of your local workstation.
-    * Install Python3 (Ansible needs it): 
-      * In the terminal, copy/paste one of the following (depending on your distribution) hit Enter, type in your sudo password, hit Enter again:
-        ~~~
-        sudo apt install -y python3
-        ~~~
-        or 
-        ~~~
-        sudo yum install -y python3
-        ~~~
-    * Install Ansible:
-      * In the terminal, copy/paste one of the following (depending on your distribution) hit Enter, type in your sudo password, hit Enter again:
-        ~~~
-        sudo apt install -y ansible
-        ~~~
-        or
-        ~~~
-        sudo yum install -y ansible
-        ~~~
+### 1) Install Python3:
+  * Open the terminal (Ctrl+Alt+T) of your local workstation.
+  * In the terminal, copy/paste one of the following and hit Enter, type in your password, hit Enter again:
+    ~~~
+    sudo yum install -y python3
+    ~~~
+### 2) Install Ansible
+  * In the terminal, copy/paste the following, hit Enter, type in your password, hit Enter again:
+    ~~~
+    sudo yum install -y ansible
+    ~~~
 
-### 2) Create a server to configure:
-* <u>Important Note</u>: Usually you would be configuring a remote server for your website (see [Advanced](#<u>Advanced</u>---provision-a-remote-server:) below), but assuming you don't have one ready, we'll be setting up a Docker container locally that will act as a "remote server" for us to configure ([Recommended](#<u>Recommended</u>---start-Docker-container:)).
-* #### <u>Recommended</u> - start Docker container:
-  * For Mac users:
-    * In the terminal, copy/paste the following and hit Enter. If needed, type in your password and hit Enter again:
-      ~~~
-      brew install docker
-      ~~~
-    * Open Docker:
-      * Hit command + spacebar to open Spotlight search, type "docker" and hit return key.
-    * Start Docker container. ([info](https://hub.docker.com/r/rastasheep/ubuntu-sshd/))
-      * Once Docker starts up, in the terminal, copy/paste the following, hit Enter, type in your password and hit Enter again:
-      ~~~
-      sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
-      ~~~
-  * For Linux users:
-    * In the terminal, copy/paste one of the following (depending on your distribution), hit Enter, type in your password and hit Enter again:
-      ~~~
-      sudo apt install -y docker
-      ~~~
-      or 
-      ~~~ 
-      sudo yum install -y docker
-      ~~~
-    * Once that installs, in the terminal, copy/paste the following, hit Enter, type in your password, and hit Enter again: 
-      ~~~
-      sudo systemctl start docker
-      ~~~
-    * In the terminal, copy/paste the following, hit the Enter key, type in your password, and hit Enter again:
-      ~~~
-      sudo docker run -d -p 8080:22 -p 80:80 rastasheep/ubuntu-sshd:14.04
-      ~~~
-* #### <u>Advanced</u> - provision a remote server:
-    * Do this step instead of the above steps if you would like to provision a remote server instead of using a local Docker container.
-    * Provision an Ubuntu server with the minimum amount of resources in a public cloud of your choosing.
-    * Change the IP address in the [inventory](inventory) file to the IP address of your remote server.
-    * Delete the line containing "ansible_port" in the [inventory](inventory) file.
-    * Enable port 22 for SSH connection on the remote server.
-    * Change the SSH username, password, and sudo password in the [inventory](inventory) file.
-
-### 3) Open text editor
-* Either open a text editor ("TextEdit" application in Mac or vim/nano in Linux) or use an Integrated Development Environment (IDE) like Visual Studio Code (VS Code). 
+### 3) Open text editor 
 * I would recommend using something like [VS Code](https://code.visualstudio.com/download) because the folders, text editor, and terminal (the three things you need to use Ansible) are all integrated together in one window.
 * With VS Code, you can also install helpful extensions like ["YAML" from Red Hat](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml) which helps you catch syntax errors in YAML files (which the majority of Ansible content is written in).
 
-### 4) Clone Git repository
+### 3) Clone Git repository
 * If you haven't already, get this repository by first navigating to a folder in your terminal that you would like to store this project (`ls`, then `cd folder-name` in the terminal).
 * Then copy the line below into your terminal and hit Enter:
   ~~~
   git clone https://github.com/jacobemery/ansible_tutorial
   ~~~
 
-## Creating Ansible Content
+## Create Ansible Content
 
 ### 5) Ansible 101
 * <u>Note</u>: Click the links below just to get a basic understanding of these concepts, they will make a lot more sense once you start using them.
@@ -139,27 +59,27 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 ### 7) Create a task
 * Now that we have the website's HTML content ready, we'll need to tell Ansible to copy it over to the web server so that it shows up when you visit the URL in a web browser.
   * <u>Remember</u>: 'Tasks' are the basic units of Ansible work, which include a 'module' and some other information like a name, tags, conditionals, and others.
-* A key part of using Ansible effectively is being able to find the correct module that accomplishes the action you need Ansible to do for you. Let's simulate that search now!
-  * Open up a web browser and Google "ansible module copy" to find the Ansible module that copies files from the local workstation to Ansible-managed remote servers.
-  * You should find a website at https://docs.ansible.com with a page titled "ansible.builtin.copy - Copy files to remote locations"
-  * Read this page, which describes how to use the module. 
-  * The examples near the bottom are very helpful. That first one looks close to what we want to use, select and copy it.
-* Now we need to incorporate it into the playbook.
-  * Give the steps below a try first, but if you get stuck, answers can be found [here](answers).
+* A key part of using Ansible effectively is being able to find the correct module that accomplishes the action you need Ansible to do for you. I'll give you what you need this time, but be ready to do some Googling for the next one. Give the steps below a try first, but if you get stuck, answers can be found [here](answers/step7).
   * Open up the [site.yaml playbook](site.yaml).
   * Create a new line under "`- install_packages`". Line-up the text cursor with "`roles:`" above and type "`post_tasks:`" and hit Enter. 
     * <u>Remember</u>: 'playbooks' are sequences of roles and tasks which accomplish a broader goal.
-  * Hit the spacebar twice so that the text cursor lines up with the dash in the "`- install_packages`" line above.
-  * On that new line, paste the example copy module task from the Ansible website. 
-    * The "`name`" line from the example task should be in the correct place, but the other lines may not be.
-    * Go back to the Ansible website with the copy module and indent the lines to match what you see in the example. You can use either tab or two spaces to indent. 
+  * Hit the spacebar twice so that the text cursor lines up with the dash in the "`- install_packages`" line above. Then copy/paste the following, it should look like this:
+    ~~~
+      ...
+        roles:
+          - install_packages
+        post_tasks:
+          - name: 
+            ansible.builtin.copy:
+              src: 
+              dest: 
+    ~~~
     * <u>Note on YAML syntax</u>: indentation has to be perfect with YAML files. If something is not indented properly, it will cause an error. I highly recommend using an IDE like VS Code where you can install extensions to catch these errors early (the "YAML" extension from Red Hat is great).
 * Now that we have a properly formatted task in our playbook, we now need to customize it to meet our specific needs.
-  * Replace "Copy file with owner and permissions" in the "`name:`" line from the example with something like: "Copy index.html to web server."
-  * <u>Note on task names</u>: The "`name:`" parameter has no effect on the outcome of the task. It is simply your description of the task being run. It is, however extremely important in terms of documenting your playbooks. Both you and other users of your playbooks in the future will either thank or curse you based on the quality of your descriptions. I recommend using full sentences to give the user the best possible picture of the task. This is what shows up on the terminal when you run the playbook (which you will see later).
-  * Replace the example file path in the source (`src:`) line with the location of [the HTML file](website/index.html) we want copied over: "`website/index.html`"
-  * Next, replace the destination (`dest:`) parameter with the file path where we need [the HTML file](website/index.html) to be place on the remote server so that it is accessible via the internet: "`/var/www/html/index.html`"
-  * Because we do not need to set the permissions/ownership of this file, delete the rest of the lines from the example (`owner`, `group`, and `mode` parameters).
+  * For the `name:`, type "Copy index.html to web server." Make sure to leave a space between the colon and the content, i.e. "name: Copy index..."
+  * <u>Note on task names</u>: The `name:` parameter has no effect on the outcome of the task. It is simply your description of the task being run. It is, however extremely important in terms of documenting your playbooks. Both you and other users of your playbooks in the future will either thank or curse you based on the quality of your descriptions. I recommend using full sentences to give the user the best possible picture of the task. This is what shows up on the terminal when you run the playbook (which you will see later).
+  * Fill in the source (`src:`) line with the location of [the HTML file](website/index.html) we want copied over: `website/index.html`
+  * Next, fill in the destination (`dest:`) parameter with the file path where we need [the HTML file](website/index.html) to be placed on the remote server so that it is accessible via the internet: `/var/www/html/index.html`
 * Great! You created your first Ansible task. 
 * Check your work [here](answers/step7). Make sure to double-check your indentation.
 
@@ -170,39 +90,19 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * What we'll do now is create an Ansible role that starts and enables HTTP to serve a basic web page.
     * <u>Remember</u>: 'Roles' are sequences of tasks which fulfill a specifc function.
   * Apache is HTTP server software that will allow you to connect to your deployed website in a browser by the end of this tutorial. Just what we need!
-  * I've already written a role that installs the software for apache2 on the server for you. Check it out [here](roles/install_packages/tasks/main.yaml) as a role example.
-* The next step is create a role which starts and enables the Apache software.
-  * The first step to making a new role, is to create a series folders within each other that follow this required structure: `ansible_tutorial/roles/start_apache2/tasks/main.yaml`, where `start_apache2` represents the name of the new role.
-    ~~~
-    ansible_tutorial
-      └─roles
-          └─start_apache2
-              └─tasks
-                  └─main.yaml
-    ~~~
-    * <u>To create folders in terminal, here are some useful commands</u>:
-     ~~~
-     pwd #to see which folder you're in currently ('print working directory')
-     ls #to see the contents of the folder you're currently in ('list')
-     cd folder-name #to move into one of the sub-folders ('change directories' another name for folders in Linux)
-     cd .. #to go back up a folder (.. represents the parent folder)
-     mkdir new-folder-name #to create a new folder ('make directory')
-     touch file-name.yaml #to create a new file within the current folder
-     ~~~
-    * Use these commands to create a series of subfolders that match `ansible_tutorial/roles/start_apache2/tasks/main.yaml`
-      
-    * <u>In VS Code</u>: do this by right clicking on the folder you'd like to make a folder in and click "New Folder". Type in the name, hit Enter, and so on until "tasks", then click "New File" to create "main.yaml".
-  * Now we'll start creating the role's tasks.
-    * First, open the main.yaml file that you just created and put three dashes at the top of the file, like this: "`---`", which signals the start of Ansible content to be run. Hit Enter twice to move to a new line.
-    * Remember how I said that finding the correct Ansible module is a core skill for using Ansible effectively? 
-    * See if you can find an Ansible module all on your own that <u>manages software services</u> like http. 
-    * Find it?
-    * We want to use this module to start and enable the service named "apache2". Read the parameters and pull from the examples to create two tasks which tell Ansible to do just that. 
-    * Use the [install_packages](roles/install_packages/tasks/main.yaml) role as a reference if you need an example.
+  * I've already written a role that installs Apache for you. Check it out [here](roles/install_packages/tasks/main.yaml) as a role example.
+* The next step is create a role which starts and enables Apache.
+    * Open the [main.yaml](roles/httpd/tasks/main.yaml) file and put three dashes at the top of the file, like this: `---`, which signals the start of Ansible content to be run. Hit Enter to move to a new line.
+    * Remember how I said that you'd have to find the next Ansible module? 
+      * Open up a web browser and Google 'ansible module manage services'.
+      * You should find a website at https://docs.ansible.com with a page titled "ansible.builtin.service - manage services"
+      * Read this page, which describes how to use the module. 
+      * The examples near the bottom are very helpful. That first one looks right! Select and copy it.
+      * Bonus points: we also want to <i>enable</i> httpd so that it starts back up on reboot of the server. See if you can figure out how to do that from the examples on the module's page.
   * Check your work [here](answers/step8). Give it a good try first though!
-* Ok so we've created the role's tasks, but we're not quite done yet. We also need to tell Ansible that we'd like it to run this role in the playbook.
-  * Open the [site.yaml](site.yaml) playbook and just below the "`- install_packages`" line, in the same format and indentation, add a line that calls `- start_apache2`.
-* Great! Now Ansible will call the role you created that starts and enables Apache.
+* Ok so we've created the role's tasks, but we're done quite yet. We also need to tell Ansible that we'd like it to run this role in the playbook.
+  * Open the [site.yaml](site.yaml) playbook and just below the "`- install_packages`" line, in the same format and indentation, add a line `- httpd`.
+* Great! Now Ansible will call the role you created that starts and enables Apache (httpd).
 
 ## Run Ansible
 
@@ -216,7 +116,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * Watch Ansible as it runs. 
 * If all goes smoothly, you should be able to open a web browser and type in the following as the URL to see your new website!
   ~~~
-  http://127.0.0.1:80
+  http://127.0.0.1
   ~~~
 * Likely though, you will encounter some errors...
 
@@ -244,17 +144,6 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 
 ### 11) Teardown Web Server
 * <u>Note:</u> If you would like to do some additional steps to learn more about Ansible, skip this step until after doing the [optional steps](##Additional-Optional-Steps) below.
-* [Recommended](#<u>Recommended</u>---start-Docker-container:): 
-  * First get the container ID in your terminal by running this command: 
-    ~~~
-    sudo docker ps | awk '{print $1}'
-    ~~~
-    then use that Container ID you just found to kill the Docker container:
-    ~~~
-    sudo docker kill <containerID>
-    ~~~
-* [Advanced](#<u>Advanced</u>---provision-a-remote-server:):
-  * Make sure to teardown the server you provisioned in the cloud in order to avoid ongoing costs.
   
 ## Additional Optional Steps
 
@@ -274,11 +163,11 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
   * Watch Ansible as it runs and updates the website automatically.
   * Refresh the web page at:
     ~~~
-    http://127.0.0.1:80
+    http://127.0.0.1
     ~~~
 * If you want to use multiple tags, enclose them in single or double quotes, and separate with commas. For example: 
   ~~~
-  ansible-playbook site.yaml --tags 'start_apache,update_website'
+  ansible-playbook site.yaml --tags 'httpd,update_website'
   ~~~
 ### 13) Loops
 * Check out the [install_packages role](roles/install_packages/tasks/main.yaml), see the `"{{ item }}"` and `loop: "{{ packages }}"` lines?
@@ -296,7 +185,7 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
 * To print information to the terminal, Ansible uses the `debug` module.
 * Let's say that at the end of the playbook, you'd like Ansible to print out a URL for the user to easily click on to bring them to their new website.
   * Do a quick Google search to find the debug module.
-  * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes `http://127.0.0.1:80`.
+  * Open the [main playbook](site.yaml) and create a new task after copying the html to the web server that prints a message which includes `http://127.0.0.1`.
   * You could include a tag or two to selectively run just that task too.
 * Check your work [here](answers/step14).
 ### 15) Ad-hoc commands
@@ -309,4 +198,3 @@ Here you will find step-by-step instructions to walk you through this Ansible tu
     command: dig +short hostname.base_domain  | tail -n1
   ~~~
 * That's all I've got! I hope this tutorial was helpful and that you've come away with some basic understanding of Ansible and how it works.
-* Remember to return to step 11 to clean up.

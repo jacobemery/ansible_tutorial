@@ -1,16 +1,13 @@
 ---
-
 - name: Start Apache (http) service.
   service:
-    name: apache2
+    name: httpd
     state: started
 
 - name: Enable Apache (http) service.
   service:
-    name: apache2
+    name: httpd
     enabled: yes
-
-
 
 ###########################################################################################                                                                                       #
 # You may have noticed that instead of calling the module "ansible.builtin.service", it's #
