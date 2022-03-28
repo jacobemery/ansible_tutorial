@@ -34,9 +34,10 @@
 #                                                                                         #
 # You can actually combine these two tasks into one if you want, like this:               #
 #                                                                                         # 
-#  - name: restart and enable Apache (http) service.                                        # 
+#  - name: restart and enable Apache (http) service.                                      # 
 #    service:                                                                             #
-#      name: httpd                                                                      #
+#      name: httpd                                                                        #
+#      state: restarted                                                                   #
 #      enabled: yes                                                                       #
 #                                                                                         #
 # Bonus points if you figured that one out on your own! Let's keep going.                 #
