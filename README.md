@@ -16,7 +16,6 @@ Beginner - This was created to be as simple as possible while still giving you s
 
 ## Summary
 * First, we'll install Ansible.
-* Normally, we would then configure a remote server to host your website. This tutorial will use a local Docker container to simulate a remote server.
 * Next, walk through the creation of some very basic Ansible content.
 * Then, run Ansible and debug any problems.
 * Visit your new website.
